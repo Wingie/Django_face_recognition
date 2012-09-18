@@ -6,3 +6,5 @@ website : this folder is the django servr application whose python scripts are l
 
 This project requires openCV and various python bindings to work properly. i did a lot of dirty hacks to get this ready on time for a project review.
 but the code should give you a starting point to building it yourselves.
+
+if you do need any help, ping me at wingston.sharon@gmail.com for any help insofar as i can offer you.
