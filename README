@@ -1,4 +1,4 @@
-this project was developed as a face recognition system that can be used over a PHP Django server to open the clients webcam and use the python bindings of openCV to perform Harr CLassification on the faces detected.
+this project was developed as a face recognition system that can be used over a Django server to open the clients webcam and use the python bindings of openCV to perform Harr CLassification on the faces detected.
 
 facedetection : contains the source code of the openCV application used to perform the face recognition via the haarclascade XML files.
 image_manip : contains the C code to open the webcam and take snapshots and store them into the pics folder.
