@@ -1,0 +1,56 @@
+wingston@WIND-0000:~/Documents/Data processing on the cloud/mysite$ python manage.py sql image_recognition
+BEGIN;
+CREATE TABLE `image_recognition_user` (
+    `user_id` varchar(20) NOT NULL PRIMARY KEY,
+    `access_level` integer NOT NULL
+)
+;
+CREATE TABLE `image_recognition_person` (
+    `person_id` varchar(20) NOT NULL PRIMARY KEY,
+    `first_name` varchar(40) NOT NULL,
+    `last_name` varchar(40) NOT NULL,
+    `age` integer NOT NULL,
+    `gender` varchar(2) NOT NULL,
+    `address` varchar(200) NOT NULL,
+    `user_id_id` varchar(20) NOT NULL
+)
+;
+ALTER TABLE `image_recognition_person` ADD CONSTRAINT `user_id_id_refs_user_id_69971bff` FOREIGN KEY (`user_id_id`) REFERENCES `image_recognition_user` (`user_id`);
+CREATE TABLE `image_recognition_batch` (
+    `batch_id` varchar(20) NOT NULL PRIMARY KEY,
+    `user_id_id` varchar(20) NOT NULL,
+    `date_time` datetime NOT NULL
+)
+;
+ALTER TABLE `image_recognition_batch` ADD CONSTRAINT `user_id_id_refs_user_id_4f89f91` FOREIGN KEY (`user_id_id`) REFERENCES `image_recognition_user` (`user_id`);
+CREATE TABLE `image_recognition_image` (
+    `image_id` varchar(20) NOT NULL PRIMARY KEY,
+    `image_name` varchar(100) NOT NULL,
+    `batch_id_id` varchar(20) NOT NULL
+)
+;
+ALTER TABLE `image_recognition_image` ADD CONSTRAINT `batch_id_id_refs_batch_id_f50a4272` FOREIGN KEY (`batch_id_id`) REFERENCES `image_recognition_batch` (`batch_id`);
+CREATE TABLE `image_recognition_parameter` (
+    `parameter_id` varchar(20) NOT NULL PRIMARY KEY,
+    `batch_id_id` varchar(20) NOT NULL,
+    `user_id_id` varchar(20) NOT NULL
+)
+;
+ALTER TABLE `image_recognition_parameter` ADD CONSTRAINT `batch_id_id_refs_batch_id_14481330` FOREIGN KEY (`batch_id_id`) REFERENCES `image_recognition_batch` (`batch_id`);
+ALTER TABLE `image_recognition_parameter` ADD CONSTRAINT `user_id_id_refs_user_id_7af74684` FOREIGN KEY (`user_id_id`) REFERENCES `image_recognition_user` (`user_id`);
+COMMIT;
+wingston@WIND-0000:~/Documents/Data processing on the cloud/mysite$ 
+
+wingston@WIND-0000:~/Documents/Data processing on the cloud/mysite$ python manage.py syncdb
+Creating tables ...
+Creating table image_recognition_user
+Creating table image_recognition_person
+Creating table image_recognition_batch
+Creating table image_recognition_image
+Creating table image_recognition_parameter
+Installing custom SQL ...
+Installing indexes ...
+Installed 0 object(s) from 0 fixture(s)
+wingston@WIND-0000:~/Documents/Data processing on the cloud/mysite$ 
+
+

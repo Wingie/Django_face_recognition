@@ -1,0 +1,1 @@
+g++ test.cpp -o aditya $(pkg-config --cflags --libs opencv)

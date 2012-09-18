@@ -1,0 +1,36 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import MySQLdb as mdb
+import sys
+import glob
+import os
+import Image
+
+print "Now reading Database for Images"
+try:
+        conn = mdb.connect(host='localhost',user='root',passwd='a', db='facial')
+        cursor = conn.cursor()
+    	cursor2 = conn.cursor()
+	path = "got_images"
+    	if os.path.isdir(path) != 1:
+       		os.makedirs("got_images")
+
+        cursor.execute("SELECT * From image")
+        data = cursor.fetchall()
+        for row in data :
+        	print "Image:%s " % (row[4] + row[5] )
+        	fout = open(row[4]+row[5],'wb')
+        	cursor2.execute("Select image from image where image_name= %s", row[4])
+        	fout.write(cursor2.fetchone()[0])
+        	im = Image.open(row[4]+row[5])
+        	print "Properties of Image %s : %s %s %s" % (row[4]+row[5], im.format, im.size, im.mode)
+        	print " "
+                
+        cursor.close()
+        conn.close()
+
+except mdb.Error, e:
+  
+	print "Error %d: %s" % (e.args[0],e.args[1])
+	sys.exit(1)
